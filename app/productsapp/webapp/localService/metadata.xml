@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Products" EntityType="CatalogService.Products">
+                    <NavigationPropertyBinding Path="LINK_TO_SUPPLIER" Target="Suppliers"/>
+                    <NavigationPropertyBinding Path="LINK_TO_CUSTOMER" Target="Customers"/>
+                </EntitySet>
+                <EntitySet Name="Suppliers" EntityType="CatalogService.Suppliers"/>
+                <EntitySet Name="Customers" EntityType="CatalogService.Customers"/>
+            </EntityContainer>
+            <EntityType Name="Products">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="PROD_NAME" Type="Edm.String" MaxLength="256"/>
+                <Property Name="PROD_PRICE" Type="Edm.Int64"/>
+                <Property Name="PROD_TYPE" Type="Edm.String" MaxLength="256"/>
+                <Property Name="SUPPLIER_NAME" Type="Edm.String" MaxLength="256"/>
+                <Property Name="CUSTOMER_NAME" Type="Edm.String" MaxLength="256"/>
+                <Property Name="HISTORY_CRTD_BY" Type="Edm.String" MaxLength="256"/>
+                <Property Name="HISTORY_CRTD_DATE" Type="Edm.DateTimeOffset"/>
+                <Property Name="HISTORY_CRTD_APP_ID" Type="Edm.String" MaxLength="40"/>
+                <Property Name="HISTORY_CHNG_BY" Type="Edm.String" MaxLength="256"/>
+                <Property Name="HISTORY_CHNG_DATE" Type="Edm.DateTimeOffset"/>
+                <Property Name="HISTORY_CHNG_APP_ID" Type="Edm.String" MaxLength="40"/>
+                <Property Name="AGREEMENT" Type="Edm.Boolean" DefaultValue="false"/>
+                <NavigationProperty Name="LINK_TO_SUPPLIER" Type="Collection(CatalogService.Suppliers)"/>
+                <NavigationProperty Name="LINK_TO_CUSTOMER" Type="Collection(CatalogService.Customers)"/>
+            </EntityType>
+            <EntityType Name="Suppliers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" MaxLength="256"/>
+            </EntityType>
+            <EntityType Name="Customers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" MaxLength="256"/>
+            </EntityType>
+            <Annotations Target="CatalogService.Products">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="Products"/>
+                        <PropertyValue Property="TypeNamePlural" String="Products"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>PROD_NAME</PropertyPath>
+                        <PropertyPath>PROD_TYPE</PropertyPath>
+                        <PropertyPath>SUPPLIER_NAME</PropertyPath>
+                        <PropertyPath>CUSTOMER_NAME</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ID"/>
+                            <PropertyValue Property="Value" Path="ID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Product Name"/>
+                            <PropertyValue Property="Value" Path="PROD_NAME"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Product Type"/>
+                            <PropertyValue Property="Value" Path="PROD_TYPE"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Customer Name"/>
+                            <PropertyValue Property="Value" Path="CUSTOMER_NAME"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Supplier Name"/>
+                            <PropertyValue Property="Value" Path="SUPPLIER_NAME"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Product Price"/>
+                            <PropertyValue Property="Value" Path="PROD_PRICE"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Agreement"/>
+                            <PropertyValue Property="Value" Path="AGREEMENT"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup1">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="ID"/>
+                                    <PropertyValue Property="Value" Path="ID"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Product Name"/>
+                                    <PropertyValue Property="Value" Path="PROD_NAME"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Product Type"/>
+                                    <PropertyValue Property="Value" Path="PROD_TYPE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup2">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Customer Name"/>
+                                    <PropertyValue Property="Value" Path="CUSTOMER_NAME"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Supplier Name"/>
+                                    <PropertyValue Property="Value" Path="SUPPLIER_NAME"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Product Price"/>
+                                    <PropertyValue Property="Value" Path="PROD_PRICE"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Agreement"/>
+                                    <PropertyValue Property="Value" Path="AGREEMENT"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="GeneratedFacet1"/>
+                            <PropertyValue Property="Label" String="General Information"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup1"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="GeneratedFacet2"/>
+                            <PropertyValue Property="Label" String="Additional Information"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup2"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/ID">
+                <Annotation Term="Common.Label" String="ID"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/PROD_NAME">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Label" String="Product Name"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/PROD_PRICE">
+                <Annotation Term="Common.Label" String="Product Price"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/PROD_TYPE">
+                <Annotation Term="Common.Label" String="Product Type"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/SUPPLIER_NAME">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Text" Path="LINK_TO_SUPPLIER/DESCRIPTION">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Suppliers"/>
+                        <PropertyValue Property="Label" String="Supplier Name"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="DESCRIPTION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SUPPLIER_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="ID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Supplier Name"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/CUSTOMER_NAME">
+                <Annotation Term="Common.Label" String="Customer Name"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/HISTORY_CRTD_BY">
+                <Annotation Term="Common.Label" String="Created By"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/HISTORY_CRTD_DATE">
+                <Annotation Term="Common.Label" String="Created On"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/HISTORY_CRTD_APP_ID">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+                <Annotation Term="Common.Label" String="History"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/HISTORY_CHNG_BY">
+                <Annotation Term="Common.Label" String="Changed By"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/HISTORY_CHNG_DATE">
+                <Annotation Term="Common.Label" String="Changed On"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/HISTORY_CHNG_APP_ID">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+                <Annotation Term="Common.Label" String="History"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Products/AGREEMENT">
+                <Annotation Term="Common.Label" String="Agreement"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
