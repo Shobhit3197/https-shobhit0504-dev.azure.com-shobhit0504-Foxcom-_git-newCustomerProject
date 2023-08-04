@@ -16,7 +16,7 @@
             "toolsId": "ff8013c8-3b87-45a2-b24e-657be8404fec"
         },
         "dataSources": {
-            "mainService": {
+            "CatalogService": {
                 "uri": "/odata/v4/catalog/",
                 "type": "OData",
                 "settings": {
@@ -81,7 +81,7 @@
                 }
             },
             "": {
-                "dataSource": "mainService",
+                "dataSource": "CatalogService",
                 "preload": true,
                 "settings": {
                     "synchronizationMode": "None",

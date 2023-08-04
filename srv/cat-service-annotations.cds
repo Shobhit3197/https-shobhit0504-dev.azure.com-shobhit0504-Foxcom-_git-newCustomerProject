@@ -189,8 +189,7 @@ annotate service.Products with {
 annotate service.Products with {
     SUPPLIER_NAME @(Common: {
         Text           : LINK_TO_SUPPLIER.DESCRIPTION,
-        TextArrangement: #TextOnly,
-        //ValueListWithFixedValues,
+        TextArrangement: #TextOnly,        
         ValueList      : {
             CollectionPath: 'Suppliers',
             Label         : 'Supplier Name',
