@@ -1,6 +1,5 @@
 namespace db;
 using db.types as types from '../data-Model/types';
-
 entity PRODUCTS {
     key ID               : UUID;
         @title: 'Product Name'
@@ -19,19 +18,18 @@ entity PRODUCTS {
         HISTORY          : types.HistoryT;
         @title: 'Agreement'
         AGREEMENT   : Boolean default false;
-
+        @title:'Date of Manufacture'
+        DOB: Date;
         LINK_TO_SUPPLIER : Association[1.. 1] to SUPPLIER
                                on LINK_TO_SUPPLIER.ID = SUPPLIER_NAME;
         LINK_TO_CUSTOMER : Association[1.. 1] to CUSTOMER
                                on LINK_TO_CUSTOMER.ID = CUSTOMER_NAME;
 
 }
-
 entity SUPPLIER {
     key ID          : String(256);
         DESCRIPTION : String(256);
 }
-
 entity CUSTOMER {
     key ID          : String(256);
         DESCRIPTION : String(256);

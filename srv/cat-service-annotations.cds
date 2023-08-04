@@ -1,13 +1,7 @@
 using CatalogService as service from './cat-service';
-
 /**
  * Annotations for Products
  */
-
-// annotate service.Products {
-//     ID @UI.HiddenFilter;
-// }
-
 annotate service.Products with {
     ID        @title: 'ID';
     AGREEMENT @title: 'Agreement';
@@ -128,6 +122,11 @@ annotate service.Products with @(
                 $Type: 'UI.DataField',
                 Label: 'Currency',
                 Value: CURRENCY
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Date of Manufacture',
+                Value: DOB
             }
         ]
     },
